@@ -1,5 +1,7 @@
 //#define DEBUG_CONSOLE // Define that if you want debug console
 
+#define GLEW_STATIC // DO NOT REMOVE THIS OR ELSE GLEW WILL NOT WORK
+
 #include <Windows.h>
 #include <cstdio>
 #include <4dm.h>
