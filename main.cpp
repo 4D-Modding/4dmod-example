@@ -68,6 +68,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD _reason, LPVOID lpReserved)
 {
 	if (_reason == DLL_PROCESS_ATTACH)
 		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Main_Thread, hModule, 0, NULL);
-
+	else if (_reason == DLL_PROCESS_DETACH)
+		MH_DisableHook(MH_ALL_HOOKS);
 	return TRUE;
 }
