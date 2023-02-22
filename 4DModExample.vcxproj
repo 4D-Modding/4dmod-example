@@ -24,6 +24,7 @@
     <ProjectGuid>{8e6157a3-810b-445c-bf61-a95a3f6bb11c}</ProjectGuid>
     <RootNamespace>_4DModExample</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>4DMod</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
