@@ -3,7 +3,7 @@
 #define GLEW_STATIC // DO NOT REMOVE THIS OR ELSE GLEW WILL NOT WORK
 
 // Mod Name. Make sure its same as mod's folder name
-#define MOD_NAME "4DModExample"
+#define MOD_NAME "4DMod"
 #define MOD_VER "1.0"
 
 #include <Windows.h>
