@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{8e6157a3-810b-445c-bf61-a95a3f6bb11c}</ProjectGuid>
-    <RootNamespace>_4DModExample</RootNamespace>
+    <RootNamespace>_4DMod</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>4DMod</ProjectName>
   </PropertyGroup>
