@@ -10,8 +10,6 @@
 #include <cstdio>
 #include <4dm.h>
 using namespace fdm;
-#include <MinHook.h>
-
 
 
 void(__thiscall* GameState_init)(GameState* self, StateManager& s);
