@@ -14,7 +14,6 @@ void(__thiscall* GameState_init)(GameState* self, StateManager& s);
 void __fastcall GameState_init_H(GameState* self, StateManager& s)
 {
 	glfwInit(); // for glfw functions to work
-	glewInit(); // for glew/gl functions to work
 
 	// Your code that runs at first frame here (it calls when you load into the world)
 
