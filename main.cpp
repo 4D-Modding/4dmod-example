@@ -1,6 +1,6 @@
-//#define DEBUG_CONSOLE // Define that if you want debug console
+//#define DEBUG_CONSOLE // Uncomment this if you want a debug console
 
-// Mod Name. Make sure its same as mod's folder name
+// Mod Name. Make sure it matches the mod folder's name
 #define MOD_NAME "4DMod"
 #define MOD_VER "1.0"
 
