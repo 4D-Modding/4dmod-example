@@ -13,8 +13,6 @@ using namespace fdm;
 void(__thiscall* GameState_init)(GameState* self, StateManager& s);
 void __fastcall GameState_init_H(GameState* self, StateManager& s)
 {
-	glfwInit(); // for glfw functions to work
-
 	// Your code that runs at first frame here (it calls when you load into the world)
 
 	GameState_init(self, s);
@@ -44,6 +42,10 @@ DWORD WINAPI Main_Thread(void* hModule)
 	FILE* fp;
 	freopen_s(&fp, "CONOUT$", "w", stdout);
 #endif
+	
+	glfwInit();
+	glewInit();
+
 	// Hook to the GameState::init function
 	Hook(reinterpret_cast<void*>(base + idaOffsetFix(0x50690)), reinterpret_cast<void*>(&GameState_init_H), reinterpret_cast<void**>(&GameState_init));
 
