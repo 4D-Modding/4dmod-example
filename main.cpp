@@ -47,13 +47,13 @@ DWORD WINAPI Main_Thread(void* hModule)
 	glewInit();
 
 	// Hook to the GameState::init function
-	Hook(reinterpret_cast<void*>(base + idaOffsetFix(0x50690)), reinterpret_cast<void*>(&GameState_init_H), reinterpret_cast<void**>(&GameState_init));
+	Hook(reinterpret_cast<void*>(FUNC_GAMESTATE_INIT), reinterpret_cast<void*>(&GameState_init_H), reinterpret_cast<void**>(&GameState_init));
 
 	// Hook to the Player::update function
-	Hook(reinterpret_cast<void*>(base + idaOffsetFix(0x7EB40)), reinterpret_cast<void*>(&Player_update_H), reinterpret_cast<void**>(&Player_update));
+	Hook(reinterpret_cast<void*>(FUNC_PLAYER_UPDATE), reinterpret_cast<void*>(&Player_update_H), reinterpret_cast<void**>(&Player_update));
 
 	// Hook to the Player::keyInput function
-	Hook(reinterpret_cast<void*>(base + idaOffsetFix(0x81880)), reinterpret_cast<void*>(&Player_keyInput_H), reinterpret_cast<void**>(&Player_keyInput));
+	Hook(reinterpret_cast<void*>(FUNC_PLAYER_KEYINPUT), reinterpret_cast<void*>(&Player_keyInput_H), reinterpret_cast<void**>(&Player_keyInput));
 
 	EnableHook(0);
 	return true;
