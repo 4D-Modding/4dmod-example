@@ -1,6 +1,6 @@
 //#define DEBUG_CONSOLE // Uncomment this if you want a debug console
 
-// Mod Name. Make sure it matches the mod folder's name
+// Mod Name. Make sure it matches the mod folder's name. Also don't forget to change the output DLL name in Project Properties->General->Target Name
 #define MOD_NAME "4DMod"
 #define MOD_VER "1.0"
 
