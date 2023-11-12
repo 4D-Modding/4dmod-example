@@ -60,18 +60,18 @@ DWORD WINAPI Main_Thread(void* hModule)
 	glfwInit();
 
 	// Hook to the StateGame::init function
-	Hook(reinterpret_cast<void*>(FUNC_STATEGAME_INIT), reinterpret_cast<void*>(&StateGame_init_H), reinterpret_cast<void**>(&StateGame_init));
+	Hook(FUNC_STATEGAME_INIT, &StateGame_init_H, &StateGame_init);
 
 	// Hook to the Player::update function
-	Hook(reinterpret_cast<void*>(FUNC_PLAYER_UPDATE), reinterpret_cast<void*>(&Player_update_H), reinterpret_cast<void**>(&Player_update));
+	Hook(FUNC_PLAYER_UPDATE, &Player_update_H, &Player_update);
 
 	// Hook to the Player::keyInput function
-	Hook(reinterpret_cast<void*>(FUNC_PLAYER_KEYINPUT), reinterpret_cast<void*>(&Player_keyInput_H), reinterpret_cast<void**>(&Player_keyInput));
+	Hook(FUNC_PLAYER_KEYINPUT, &Player_keyInput_H, &Player_keyInput);
 
 	// glewInit. also im using `update` function for that instead of `init` because sometimes the injection is too slow and `init` hook is happening after `init` function started.
-	Hook(reinterpret_cast<void*>(FUNC_STATETITLESCREEN_UPDATE), reinterpret_cast<void*>(&StateTitleScreen_update_H), reinterpret_cast<void**>(&StateTitleScreen_update));
+	Hook(FUNC_STATETITLESCREEN_UPDATE, &StateTitleScreen_update_H, &StateTitleScreen_update);
 
-	EnableHook(0);
+	EnableHook();
 	return true;
 }
 
