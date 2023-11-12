@@ -34,6 +34,20 @@ bool __fastcall Player_keyInput_H(Player* self, GLFWwindow* window, World* world
 	return Player_keyInput(self, window, world, key, scancode, action, mods);
 }
 
+// some bullshit new glew initialization code. ok? dont remove that. unless you dont have anything related to rendering.
+bool initializedGLEW = false;
+void(__thiscall* StateTitleScreen_update)(StateTitleScreen* self, StateManager& s, double dt);
+void __fastcall StateTitleScreen_update_H(StateTitleScreen* self, StateManager& s, double dt)
+{
+	StateTitleScreen_update(self, s, dt);
+	if(!initializedGLEW)
+	{
+		glewExperimental = GL_TRUE;
+		glewInit();
+		initializedGLEW = true;
+	}
+}
+
 DWORD WINAPI Main_Thread(void* hModule)
 {
 	// Create console window if DEBUG_CONSOLE is defined
@@ -44,7 +58,6 @@ DWORD WINAPI Main_Thread(void* hModule)
 #endif
 	
 	glfwInit();
-	glewInit();
 
 	// Hook to the StateGame::init function
 	Hook(reinterpret_cast<void*>(FUNC_STATEGAME_INIT), reinterpret_cast<void*>(&StateGame_init_H), reinterpret_cast<void**>(&StateGame_init));
@@ -54,6 +67,9 @@ DWORD WINAPI Main_Thread(void* hModule)
 
 	// Hook to the Player::keyInput function
 	Hook(reinterpret_cast<void*>(FUNC_PLAYER_KEYINPUT), reinterpret_cast<void*>(&Player_keyInput_H), reinterpret_cast<void**>(&Player_keyInput));
+
+	// glewInit. also im using `update` function for that instead of `init` because sometimes the injection is too slow and `init` hook is happening after `init` function started.
+	Hook(reinterpret_cast<void*>(FUNC_STATETITLESCREEN_UPDATE), reinterpret_cast<void*>(&StateTitleScreen_update_H), reinterpret_cast<void**>(&StateTitleScreen_update));
 
 	EnableHook(0);
 	return true;
