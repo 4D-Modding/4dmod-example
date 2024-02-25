@@ -31,3 +31,9 @@ jobs:
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: msbuild /m /p:configuration=release /p:platform=x64 ${{env.SOLUTION_FILE_PATH}}
+
+    - name: Output DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: The .dll file
+          path: ./x64/Release/*.dll
