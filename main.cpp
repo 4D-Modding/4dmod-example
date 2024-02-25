@@ -27,3 +27,13 @@ $hook(bool, Player, keyInput, GLFWwindow* window, World* world, int key, int sca
 
 	return original(self, window, world, key, scancode, action, mods);
 }
+
+$hook(void, StateTitleScreen, init, StateManager& s)
+{
+	// initialize opengl stuff
+	glewExperimental = true;
+	glewInit();
+	glfwInit();
+
+	original(self, s);
+}
