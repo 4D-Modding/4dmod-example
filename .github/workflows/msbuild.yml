@@ -36,4 +36,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: The .dll file
-        path: ./x64/Release/*.dll
+        path: |
+          ./x64/Release/*.dll
+          ./info.json5
