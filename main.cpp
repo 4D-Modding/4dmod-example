@@ -1,83 +1,29 @@
-//#define DEBUG_CONSOLE // Uncomment this if you want a debug console
+//#define DEBUG_CONSOLE // Uncomment this if you want a debug console to start
 
-// Mod Name. Make sure it matches the mod folder's name. Also don't forget to change the output DLL name in Project Properties->General->Target Name
-#define MOD_NAME "4DMod"
-#define MOD_VER "1.0"
-
-#include <Windows.h>
-#include <cstdio>
 #include <4dm.h>
+
 using namespace fdm;
 
+// Initialize the DLLMain
+initDLL
 
-void(__thiscall* StateGame_init)(StateGame* self, StateManager& s);
-void __fastcall StateGame_init_H(StateGame* self, StateManager& s)
+$hook(void, StateGame, init, StateManager& s)
 {
 	// Your code that runs at first frame here (it calls when you load into the world)
 
-	StateGame_init(self, s);
+	original(self, s);
 }
 
-void(__thiscall* Player_update)(Player* self, World* world, double dt, EntityPlayer* entityPlayer);
-void __fastcall Player_update_H(Player* self, World* world, double dt, EntityPlayer* entityPlayer) 
+$hook(void, Player, update, World* world, double dt, EntityPlayer* entityPlayer)
 {
 	// Your code that runs every frame here (it only calls when you play in world, because its Player's function)
 
-	Player_update(self, world, dt, entityPlayer);
+	original(self, world, dt, entityPlayer);
 }
 
-bool(__thiscall* Player_keyInput)(Player* self, GLFWwindow* window, World* world, int key, int scancode, int action, int mods);
-bool __fastcall Player_keyInput_H(Player* self, GLFWwindow* window, World* world, int key, int scancode, int action, int mods) 
+$hook(bool, Player, keyInput, GLFWwindow* window, World* world, int key, int scancode, int action, int mods)
 {
 	// Your code that runs when Key Input happens (check GLFW Keyboard Input tutorials)|(it only calls when you play in world, because its Player's function)
 
-	return Player_keyInput(self, window, world, key, scancode, action, mods);
-}
-
-// some bullshit new glew initialization code. ok? dont remove that. unless you dont have anything related to rendering.
-bool initializedGLEW = false;
-void(__thiscall* StateTitleScreen_update)(StateTitleScreen* self, StateManager& s, double dt);
-void __fastcall StateTitleScreen_update_H(StateTitleScreen* self, StateManager& s, double dt)
-{
-	StateTitleScreen_update(self, s, dt);
-	if(!initializedGLEW)
-	{
-		glewExperimental = GL_TRUE;
-		glewInit();
-		initializedGLEW = true;
-	}
-}
-
-DWORD WINAPI Main_Thread(void* hModule)
-{
-	// Create console window if DEBUG_CONSOLE is defined
-#ifdef DEBUG_CONSOLE
-	AllocConsole();
-	FILE* fp;
-	freopen_s(&fp, "CONOUT$", "w", stdout);
-#endif
-	
-	glfwInit();
-
-	// Hook to the StateGame::init function
-	Hook(FUNC_STATEGAME_INIT, &StateGame_init_H, &StateGame_init);
-
-	// Hook to the Player::update function
-	Hook(FUNC_PLAYER_UPDATE, &Player_update_H, &Player_update);
-
-	// Hook to the Player::keyInput function
-	Hook(FUNC_PLAYER_KEYINPUT, &Player_keyInput_H, &Player_keyInput);
-
-	// glewInit. also im using `update` function for that instead of `init` because sometimes the injection is too slow and `init` hook is happening after `init` function started.
-	Hook(FUNC_STATETITLESCREEN_UPDATE, &StateTitleScreen_update_H, &StateTitleScreen_update);
-
-	EnableHook();
-	return true;
-}
-
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD _reason, LPVOID lpReserved)
-{
-	if (_reason == DLL_PROCESS_ATTACH)
-		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)Main_Thread, hModule, 0, NULL);
-	return TRUE;
+	return original(self, window, world, key, scancode, action, mods);
 }

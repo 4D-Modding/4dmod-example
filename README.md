@@ -1,10 +1,10 @@
 # 4DMod Example
- This is a project example of mod for the [4D Modding](https://gdpseditor.com/4dmodding/ "4D Modding") framework.
+ This is a project example of mod for the [4D-Modding](https://4dmodding.me/ "4D-Modding") framework.
  
  For basic tutorials you should check [4dmodding-tutorials](https://github.com/4D-Modding/4dmodding-tutorials "4dmodding-tutorials") repo.
 
- You can also check out [4DFly Source-Code](https://github.com/4D-Modding/4DFly).
+ You can also check out [4D-Fly Source-Code](https://github.com/4D-Modding/4DFly).
 
- Also if you are going to use this 4DMod Example, use it as repo template instead of just `git clone` it 
+ Also if you are going to use this 4DMod Example, use it as repo template instead of just `git clone`-ing it 
 
  idk what else to put there lol
