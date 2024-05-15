@@ -16,11 +16,14 @@ OBJS = $(SRCS:.cpp=.o)
 
 default: compile
 
-compile: $(OBJS)
+compile: $(OBJS) out
 	$(CXX) $(CXXFLAGS) $(OBJS) $(LDFLAGS) -o $(TARGET)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm $(TARGET) 
+	rm $(TARGET) $(OBJS)
+	
+out:
+	mkdir out
