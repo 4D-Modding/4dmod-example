@@ -1,7 +1,7 @@
 TARGET_NAME = 4DMod
 
 CXX = x86_64-w64-mingw32-g++
-CXXFLAGS = -std=c++20 -s -O2 -I./4dm.h -I./4dm.h/networking/include -march=x86-64 -municode -m64 -mwindows -fpermissive -w 
+CXXFLAGS = -std=c++20 -s -O2 -I./4dm.h -I./4dm.h/networking/include -march=x86-64 -municode -m64 -mwindows -fpermissive -w
 
 NETLIBS=$(wildcard 4dm.h/networking/lib/*.lib)
 NETLIBS:=$(filter-out %steamwebrtc.lib,$(NETLIBS))
