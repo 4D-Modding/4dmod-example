@@ -1,5 +1,5 @@
 # 4DMod Example
- This is a project example for making 4D Miner mods using the [4D-Modding](https://4dmodding.me/ "4D-Modding") framework.
+ This is a project example for making 4D Miner mods using the [4D-Modding](https://www.4d-modding.com/ "4D-Modding") framework.
  
  For basic tutorials (like on how to start modding and on how to package the mod) you should check the [4dmodding-tutorials](https://github.com/4D-Modding/4dmodding-tutorials "4dmodding-tutorials") repo.
  More advanced tutorials are going to come later in a video format.
