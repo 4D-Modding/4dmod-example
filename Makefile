@@ -24,6 +24,6 @@ compile: $(OBJS) out
 
 clean:
 	rm $(TARGET) $(OBJS)
-	
+
 out:
 	mkdir out
