@@ -23,7 +23,7 @@ $hook(void, Player, update, World* world, double dt, EntityPlayer* entityPlayer)
 
 $hook(bool, Player, keyInput, GLFWwindow* window, World* world, int key, int scancode, int action, int mods)
 {
-	// Your code that runs when Key Input happens (check GLFW Keyboard Input tutorials)|(it only calls when you play in world, because its Player's function)
+	// Your code that runs when Key Input happens (check GLFW Keyboard Input tutorials)|(it only calls when you play in world, because it is a Player function)
 
 	return original(self, window, world, key, scancode, action, mods);
 }
